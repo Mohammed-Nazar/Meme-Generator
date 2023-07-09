@@ -1,5 +1,5 @@
 import Header from "./components/header/header"
-
+import Meme from "./components/meme/meme"
 
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
   return (
     <>
      <Header/>
+     <Meme/>
     </>
   )
 }
