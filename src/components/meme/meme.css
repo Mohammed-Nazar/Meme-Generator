@@ -44,9 +44,30 @@
     color: white;
     border-radius: 10px;
 }
-
-.meme--img{
-    width: 40%;
+.meme-con {
+    position: relative;
+    text-align: center;
+}
+.meme-con img{
+    width: 100%;
     margin-top: 40px;
 }
 
+.meme--text {
+    color: white;
+    position: absolute;
+    font-size: 40px;
+    font-weight: bold;
+    width: 40%;
+    margin-top: 40px;
+    left: 30%;
+    margin-bottom: 20px;
+}
+
+.top {
+    top: 40px;
+}
+
+.bottom {
+    bottom: 0;
+}
