@@ -1,28 +1,27 @@
 import "./meme.css";
-import memesData from "../../assets/memesData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Meme() {
   const [urlimg, urlfun] = useState({
     topText: "",
     bottomText: "",
-    randomImage: "http://i.imgflip.com/1bij.jpg",
+    randomImage: "",
   });
 
-  const [allMemeImages, allMemeImagesFun] = useState(memesData);
+  const [allMemeImages, allMemeImagesFun] = useState();
 
   function MemeGen() {
-    let url =
-      allMemeImages.data.memes[
-        Math.floor(Math.random() * allMemeImages.data.memes.length)
-      ].url;
-    urlfun((prev) => {
-      return {
-        ...prev,
-        randomImage: url,
-      };
-    });
+    const url = allMemeImages[Math.floor(Math.random() * allMemeImages.length)].url;
+    urlfun(prev=> ({
+      ...prev,
+      randomImage: url
+    }))
   }
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => allMemeImagesFun(data.data.memes));
+  }, []);
 
   function handleChnage(event) {
     const { name, value } = event.target;
